@@ -47,12 +47,23 @@ module.exports = {
         app.post('/profileupload', (req, res) => {
             profile.uploadprofile(req.body, res);
         });
-        app.post('/quotation', (req, res) => {
-            quotation.quotations(req.body, res);
+        //หน้า quotation
+        app.post("/getquotation", (req, res) => {
+            quotation.getquotation(req.body, res);
         });
-        app.post('/createquotation', (req, res) => {
-            quotation.createquotation(req.body, res);
+
+        app.post("/quoinsert", (req, res) => {
+            quotation.insertquotation(req.body, res);
         });
+
+        app.post("/insertquodetail", (req, res) => {
+            quotation.insertquotation(req.body, res);
+        });
+
+        app.post("/getquodetail", (req, res) => {
+            quotation.getquotation(req.body, res);
+        });
+        //end quotation
 
     }
 }
