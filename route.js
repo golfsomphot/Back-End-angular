@@ -48,7 +48,13 @@ module.exports = {
             profile.uploadprofile(req.body, res);
         });
         //หน้า quotation
+        
         app.post("/getquotation", (req, res) => {
+            quotation.getquotation(req.body, res);
+            
+        });
+
+        app.post("/getquodetail", (req, res) => {
             quotation.getquotation(req.body, res);
         });
 
@@ -59,10 +65,8 @@ module.exports = {
         app.post("/insertquodetail", (req, res) => {
             quotation.insertquotation(req.body, res);
         });
-
-        app.post("/getquodetail", (req, res) => {
-            quotation.getquotation(req.body, res);
-        });
+        
+        
         //end quotation
 
     }
