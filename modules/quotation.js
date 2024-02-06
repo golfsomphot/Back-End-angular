@@ -5,7 +5,7 @@ function quotation() {
         var result = { code: "000", msg: "", data: null }
         try {
             var sql = getsqlcmd(req);
-            console.log("sql",sql);
+            // console.log("sql",sql);
             var jsondata = await connectdatabase.getdata(sql, true, false);
 
             if (jsondata.code == "000" && jsondata.data != undefined) {
@@ -26,7 +26,7 @@ function quotation() {
         var result = { code: "000", msg: "", data: null };
         try {
             var sql = insertsqlcmd(req);
-             
+
             var jsondata = await connectdatabase.excdata(sql, true);
             if (jsondata.code == "000" && jsondata.data != undefined) {
                 result.data = jsondata.data;
@@ -44,7 +44,7 @@ function quotation() {
     }
 
     function insertsqlcmd(req) {
-        console.log("insertsqlcmd req",req)
+        console.log("insertsqlcmd req", req)
         if (req.tbname == "insertquotation") {
             var data = req.data;
             // console.log("insertsqlcmd data",data);
@@ -56,7 +56,7 @@ function quotation() {
 
         } else if (req.tbname == "insertquodetail") {
             var data = req.data;
-            console.log("insertquodetail data",data);
+            // console.log("insertquodetail data",data);
             var sqlcmd = "INSERT INTO quodetail (quocode,item, productcode,qty, unitprice, amount, discount, vat, total, remark,createid, createdate, modifiedid, modifieddate)  \n" +
                 "VALUES ('" + data.quocode + "','" + data.item + "','" + data.productcode + "','" + data.qty + "' \n" +
                 ",'" + data.unitprice + "','" + data.amount + "','" + data.discount + "','" + data.vat + "', \n" +
@@ -80,7 +80,7 @@ function quotation() {
         } else if (req.tbname == "getquodetail") {
             var sqlcmd = "SELECT * FROM quodetail  ";
             if (req.quocode != undefined) {
-                var sql = "SELECT * FROM quotation WHERE quocode = '" + req.quocode + "' ";
+                var sqlcmd = "SELECT * FROM quodetail WHERE quocode = '" + req.quocode + "' ";
             };
         } else if (req.tbname == "getcustomer") {
             var sqlcmd = "SELECT custid, custname, custaddress FROM customer";

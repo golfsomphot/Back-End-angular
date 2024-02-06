@@ -4,11 +4,12 @@ var md5 = require('md5');
 const bcrypt = require('bcryptjs');
 function userdata() {
     this.getlogin = async function (req, res) {
-        // console.log("reqgetlogin:", req);
+        
         var data = req.data;
+        console.log("data:", data)
         var result = { code: "000", msg: "", data: null }
         try {
-            var sql = "SELECT empid,empcode,email,phone,pwd,address,fullname,nickname,pic  FROM employee  WHERE (email = '" + data.user + "');"
+            var sql = "SELECT empid,empcode,email,phone,pwd,address,fullname,nickname,pic,userrole  FROM employee  WHERE (email = '" + data.user + "');"
             var jsondata = await connectdatabase.getdata(sql, true, true);
             // console.log("jsondata:", jsondata)
             if (jsondata.data != undefined && req.tbname == "getdatalogin") {
@@ -32,6 +33,7 @@ function userdata() {
             result.msg = error;
             console.log("error ", error)
         }
+         
 
         res.send(result);
     }
@@ -60,6 +62,9 @@ function userdata() {
         }
         res.send(result);
     }
+
+    
+
 
 }
 module.exports = new userdata();
